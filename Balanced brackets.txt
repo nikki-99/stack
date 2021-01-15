@@ -1,0 +1,54 @@
+Question link--https://www.hackerearth.com/practice/data-structures/stacks/basics-of-stacks/practice-problems/algorithm/balanced-brackets-3-4fc590c6/
+
+Solution
+---
+#include<stdio.h>
+#include<string.h>
+char stack[1000];
+int top=-1;
+void push(char ele){
+	stack[++top]=ele;
+}
+void pop(){
+	--top;
+}
+int priority(char s){
+	if(s==')' || s=='(')
+	return 1;
+	if(s=='{' || s=='}')
+	return 2;
+	if(s==']' || s=='[')
+	return 3;
+}
+main(){
+	int n;
+	scanf("%d",&n);
+	int j=1,len,i;
+	while(j<=n){
+		top=-1;
+		char s[1000];
+		scanf("%s",s);
+		int len=strlen(s);
+		for(i=0;i<len;i++){
+			if(s[i]==']' || s[i]=='}' || s[i]==')'){
+				if(top==-1){
+					printf("NO\n");
+					++top;
+					break;
+				}
+				else if(priority(stack[top])==priority(s[i]))
+					pop();
+				else{
+				printf("NO\n");
+				break;
+				}
+			}
+			else
+				push(s[i]);
+		}
+		if(top==-1)
+			printf("YES\n");
+		
+		j++;
+	}
+}
