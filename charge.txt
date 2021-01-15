@@ -1,0 +1,49 @@
+Question Link : https://www.hackerearth.com/practice/data-structures/arrays/1-d/practice-problems/algorithm/charges-repel/
+
+Solution :
+-----------
+
+#include<stdio.h>
+
+char stack[10000000];
+long top=-1;
+void push(char ch){
+	stack[++top]=ch;
+	
+}
+void pop(){
+	--top;
+}
+main(){
+	long n;
+	scanf("%li",&n);
+	char s[n];
+	
+	scanf("%s",&s);
+
+	char *e;
+	e=s;
+	push(*e);
+	e++;
+	while(*e!='\0'){
+          if(top==-1)
+		   push(*e);
+
+       else
+		 if(*e==stack[top]){
+			pop();
+
+		}
+		else
+		   push(*e);
+
+		    e++;
+	}
+	
+    printf("%li\n",top+1);
+	
+		for(long i=0;i<=top;i++)
+	 printf("%c",stack[i]);
+
+		
+}
