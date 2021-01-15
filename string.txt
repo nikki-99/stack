@@ -1,0 +1,40 @@
+Question link--https://www.hackerearth.com/practice/data-structures/stacks/basics-of-stacks/practice-problems/algorithm/super-reduced-strings-303701dd/
+
+Solution
+---
+#include<stdio.h>
+#include<string.h>
+char stack[1000];
+long top=-1;
+void push(char ch){
+	stack[++top]=ch;
+}
+void pop(){
+	top--;
+}
+main(){
+	char s[1000];
+	long i;
+	scanf("%s",s);
+	char *e;
+	e=s;
+	while(*e!='\0'){
+		if(top==-1){
+			push(*e);
+		}
+		else if(*e==stack[top]){
+			pop();
+
+		}
+		else
+		   push(*e);
+		e++;
+	}
+	if(top==-1)
+	printf("Empty String");
+	else{
+	for(i=0;i<strlen(stack);i++){
+		printf("%c",stack[i]);
+	}
+	}
+}
